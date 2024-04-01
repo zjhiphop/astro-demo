@@ -1,9 +1,11 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Card from '../components/Card.astro';
+import Header from '../components/Header.astro';
 ---
 
 <Layout title="Welcome to My first website with Astro.">
+	<Header />
 	<main>
 		<svg
 			class="astro-a"
@@ -61,7 +63,9 @@ import Card from '../components/Card.astro';
 			/>
 		</ul>
 	</main>
+
 </Layout>
+
 
 <style>
 	main {
