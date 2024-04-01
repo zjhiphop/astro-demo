@@ -1,0 +1,5 @@
+
+User-agent: *
+Allow: /
+
+Sitemap: https://j-astro-1.netlify.app/sitemap-index.xml
