@@ -3,13 +3,16 @@ import Layout from '../layouts/Layout.astro';
 import Card from '../components/Card.astro';
 import Header from '../components/Header.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Greeting from '../components/Greeting';
+
 const pageTitle = 'Welcome to Astro'
 ---
 <BaseLayout pageTitle={pageTitle}>
 	<h2>My awesome blog subtitle</h2>
 </BaseLayout>
 <Layout title="Welcome to My first website with Astro.">
-	
+	<Greeting client:load messages={["Hi", "Hello", "Howdy", "Hey there"]} />
+
 	<main>
 		<svg
 			class="astro-a"
