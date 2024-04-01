@@ -6,10 +6,17 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Greeting from '../components/Greeting';
 
 const pageTitle = 'Welcome to Astro'
+const {
+  geo: { city },
+} = Astro.locals.netlify.context;
+Astro.response.headers.set('CDN-Cache-Control', 'public, max-age=45, must-revalidate');
+
 ---
 <BaseLayout pageTitle={pageTitle}>
+	<h1>Hello there, friendly visitor from {city}!</h1>
 	<h2>My awesome blog subtitle</h2>
 </BaseLayout>
+
 <Layout title="Welcome to My first website with Astro.">
 	<Greeting client:load messages={["Hi", "Hello", "Howdy", "Hey there"]} />
 
