@@ -1,0 +1,36 @@
+---
+import { queryPrismic } from '../../libs/prismic';
+import casesQuery from '../../query/casesQuery.graphql';
+
+const { slug } = Astro.params;
+const is_preview = import.meta.env.PREVIEW;
+
+let post = {};
+
+export async function getStaticPaths() {
+    // TODO: fetch all pages from Prismic and compose paths
+
+//     const res = await fetch( `${API_URL}/collections/pages/entries/` );
+//    const posts = res.json();
+//     return posts.data.map((post) => {
+// 		return {
+// 			params: { slug: post.slug },
+// 			props: { post } };
+// 		}
+// 	);
+}
+
+// if true - SSR
+if ( is_preview ) {
+    const previewCookie = Astro.cookies.get("io.prismic.preview")?.value;
+	const { data } = await queryPrismic({
+		query: casesQuery,
+        variables: {uid: slug},
+		previewData: previewCookie ? { ref: previewCookie } : undefined,
+	});
+
+	post = data;
+} else {
+	const {post} = Astro.props;
+}
+---

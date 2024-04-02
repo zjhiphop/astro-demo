@@ -1,0 +1,46 @@
+---
+import { queryPrismic } from '../../libs/prismic';
+import casesQuery from '../../query/casesQuery.graphql';
+//let's store is_preview as an environmental variable
+const is_preview = import.meta.env.PREVIEW;
+let posts:any = [];
+
+export async function getStaticPaths() {
+    // TODO: fetch all pages from Prismic and compose paths
+	const { data: posts } = await queryPrismic({
+		query: casesQuery
+	});
+
+   
+    return {
+		props: {posts}
+	}
+}
+
+// if true - SSR
+if ( is_preview ) {
+	const previewCookie = Astro.cookies.get("io.prismic.preview")?.value;
+	const { data } = await queryPrismic({
+		query: casesQuery,
+		previewData: previewCookie ? { ref: previewCookie } : undefined,
+	});
+
+	posts = data;
+} else {
+	const {posts} = Astro.props;
+}
+---
+
+<html>
+	<head>
+		<title>{posts[0]?.project_passcode}</title>
+	</head>
+
+	<body>
+		<main>
+			<article>
+				<div set:html={posts[0]?.project_desc.text}></div>
+			</article>
+		</main>
+	</body>
+</html>

@@ -1,0 +1,18 @@
+---
+import { queryPrismic } from "../../libs/prismic";
+
+export const prerender = false; // needs to be server side rendered
+
+const previewCookie = Astro.cookies.get("io.prismic.preview")?.value;
+
+if (!previewCookie) {
+  return Astro.redirect("/404");
+}
+
+const data = await queryPrismic({
+ ref: previewCookie
+})
+---
+
+// render with the preview data
+// Note: don't allow this page to be indexable, etc.

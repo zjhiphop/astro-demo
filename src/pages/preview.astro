@@ -1,0 +1,43 @@
+---
+export const prerender = true;
+import Layout from "../layouts/Layout.astro";
+
+const SEO = {
+  title: "Preview",
+  description: "",
+};
+---
+<!-- 
+<script
+  is:inline
+  async
+  defer
+  src="https://static.cdn.prismic.io/prismic.js?new=true&repo={your_repo}"
+></script> -->
+
+<script>
+  import { prismicClient } from "../libs/prismic";
+  const init = async () => {
+    const defaultUrl = "/";
+    const url = await prismicClient.resolvePreviewURL({
+      linkResolver: (doc: any) => {
+        if (doc.isBroken) {
+          return "/404";
+        } else if (doc.type === "home") {
+          return `/preview/home`;
+        } 
+        // add more pages (a.k.a redirects) ...
+        return defaultUrl;
+      },
+      defaultURL: defaultUrl,
+    });
+    
+    window.location.replace(url);
+  };
+
+  init();
+</script>
+
+<Layout title={SEO.title} description={SEO.description} disableIndex={true}>
+  <div>loading the preview</div>
+</Layout>

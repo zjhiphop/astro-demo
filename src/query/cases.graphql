@@ -1,0 +1,18 @@
+query ($lang: String) {
+  allCase_lists(lang: $lang) {
+   edges {
+      node {
+        _meta {
+          lang
+          id
+          uid
+          lastPublicationDate
+          tags
+        }
+        __typename
+        project_desc
+        project_passcode
+      }
+    }
+  }
+}
