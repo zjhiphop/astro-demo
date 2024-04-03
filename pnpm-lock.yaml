@@ -59,6 +59,9 @@ dependencies:
   typescript:
     specifier: ^5.4.3
     version: 5.4.3
+  vite-plugin-graphql-loader:
+    specifier: ^3.0.1
+    version: 3.0.1
 
 packages:
 
@@ -4776,6 +4779,13 @@ packages:
       '@types/unist': 3.0.2
       unist-util-stringify-position: 4.0.0
       vfile-message: 4.0.2
+    dev: false
+
+  /vite-plugin-graphql-loader@3.0.1:
+    resolution: {integrity: sha512-srY4oik0ObdRsOcUXhfqukx3tqWRj5lDrQN6LU4NdHrujcRcwxp60qEW2Lcc+pprcRJm66YVEFVmJ4/UiXkYvw==}
+    dependencies:
+      graphql: 16.8.1
+      graphql-tag: 2.12.6(graphql@16.8.1)
     dev: false
 
   /vite@5.2.6:

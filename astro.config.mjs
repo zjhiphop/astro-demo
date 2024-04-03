@@ -3,9 +3,13 @@ import preact from "@astrojs/preact";
 import sitemap from '@astrojs/sitemap';
 import netlify from "@astrojs/netlify";
 import tailwind from '@astrojs/tailwind';
+import graphqlLoader from "vite-plugin-graphql-loader";
 
 // https://astro.build/config
 export default defineConfig({
+ vite: {
+    plugins: [graphqlLoader()]
+ },
   site: "https://j-astro-1.netlify.app",
   integrations: [
     tailwind({

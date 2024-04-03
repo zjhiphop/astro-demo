@@ -5,11 +5,5 @@
     "jsxImportSource": "preact",
     "strictNullChecks": true,
     "allowJs": true
-  },
-  "include": [
-    "graphql.d.ts",
-    "**/*.ts",
-    "src/env.d.ts",
-  ],
-  "exclude": ["node_modules"]
+  }
 }

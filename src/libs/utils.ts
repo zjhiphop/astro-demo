@@ -11,7 +11,7 @@ export const getLanguageBasedOnLocale = (locale: string) => {
         es: "es-ES",
       }[locale];
     }
-    return "de-CH";
+    return "en-us";
   };
 
   export const addPrismicPreviewHeaders = (previewData: any) => {

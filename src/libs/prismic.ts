@@ -1,4 +1,5 @@
-import * as ApolloClients from '@apollo/client/core'
+import * as ApolloClientCore from '@apollo/client/core'
+import { HttpLink } from "@apollo/client/link/http/HttpLink";
 import * as prismic from '@prismicio/client'
 import { onError } from "@apollo/client/link/error";
 import { addPrismicPreviewHeaders, getLanguageBasedOnLocale } from './utils';
@@ -6,7 +7,10 @@ import { addPrismicPreviewHeaders, getLanguageBasedOnLocale } from './utils';
 // Fill in your repository name
 export const repositoryName = import.meta.env.PRISMIC_REPO_NAME
 
-const { ApolloClient, HttpLink, InMemoryCache, from }  = ApolloClients
+const { ApolloClient, InMemoryCache }  = ApolloClientCore
+//@ts-ignore
+const from = ApolloClientCore?.default?.from
+
 const routes = [
     // Update to match your website's URL structure
     { type: 'cases', path: '/cases' },
